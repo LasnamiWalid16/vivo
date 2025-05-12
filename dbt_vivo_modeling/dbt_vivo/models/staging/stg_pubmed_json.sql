@@ -5,7 +5,7 @@ with source_pubmed_json as (
         id,
         title,
         {{ format_date('date') }} as date,
-        journal
+        trim(journal) as journal
     from {{source('vivo','pubmed_json')}}
 )
 

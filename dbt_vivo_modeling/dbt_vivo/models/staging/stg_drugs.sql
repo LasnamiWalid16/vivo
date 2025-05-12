@@ -1,7 +1,7 @@
 WITH source_drugs AS (
     SELECT
         atccode,
-        drug
+        trim(drug) AS drug
     FROM 
         {{source('vivo','drugs')}}
 )

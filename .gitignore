@@ -181,3 +181,7 @@ logs/
 target/
 dbt_packages/
 logs/
+
+
+.ruff_cache
+commands_dbt.txt

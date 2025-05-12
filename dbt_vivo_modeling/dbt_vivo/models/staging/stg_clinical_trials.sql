@@ -3,7 +3,7 @@ with source_clinical_trials as (
         id,
         scientific_title,
         {{ format_date('date') }} as date,
-        journal
+        trim(journal) as journal
     from {{source('vivo','clinical_trials')}}
 )
 
