@@ -13,19 +13,19 @@ def get_top_journals_by_unique_drugs() -> pd.DataFrame:
     # Get the drug_graph dataframe 
     df = load_bigquery_query_as_dataframe(query, SERVICE_ACCOUNT_FILE)
 
-    # Explosion de la colonne JSON de mentions
+    # Explod mentions column
     df_exploded = df.explode('mentions')
 
-    # Extraire journal et atccode
+    # extract journal et atccode
     df_exploded['journal'] = df_exploded['mentions'].apply(
         lambda x: x.get('journal') if isinstance(x, dict) else None
     )
     df_clean = df_exploded[['journal', 'atccode']].dropna()
 
-    # Supprimer les doublons
+    # drop duplicates
     df_unique = df_clean.drop_duplicates()
 
-    # Compter le nombre de médicaments uniques par journal
+    # count number of drugs per journal
     journal_counts = df_unique.groupby('journal')['atccode'].nunique().reset_index(name='unique_drugs_count')
 
     # find max

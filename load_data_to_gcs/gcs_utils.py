@@ -23,34 +23,6 @@ def list_file_paths_in_directory(directory_path: str) -> list[str]:
         return []
 
 
-
-
-def convert_json_to_ndjson(json_path: str) -> str:
-    """
-    Convertit un fichier JSON contenant une liste d'objets en fichier NDJSON.
-    Retourne le chemin du fichier NDJSON.
-    """
-    with open(json_path, "r", encoding="utf-8") as f:
-        try:
-            data = json.load(f)
-        except json.JSONDecodeError as e:
-            raise ValueError(f"Format du fichier JSON incorrect ({json_path}): {e}")
-
-    if not isinstance(data, list):
-        raise ValueError(f"Le contenu JSON doit être une liste d'objets: {json_path}")
-
-    ndjson_path = json_path.replace(".json", ".ndjson")
-    with open(ndjson_path, "w", encoding="utf-8") as f:
-        for item in data:
-            if isinstance(item, dict):
-                f.write(json.dumps(item, ensure_ascii=False) + "\n")
-            else:
-                raise ValueError("Chaque élément du tableau JSON doit être un objet (dict).")
-
-    return ndjson_path
-
-
-
 def upload_file_to_gcs(path: str, bucket_name: str, service_account_file: str, folder: str = "data") -> None:
     """
     Upload un fichier CSV ou JSON dans un bucket GCS, dans le dossier spécifié.
