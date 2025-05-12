@@ -19,8 +19,6 @@ venv/
 .DS_Store
 Thumbs.db
 
-profiles.yml
-
 
 # Ignorer les fichiers spécifiques à l'IDE/OS
 .vscode/

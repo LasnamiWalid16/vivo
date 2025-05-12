@@ -177,3 +177,7 @@ credentials.json
 .pre-commit-config.yaml
 .user.yml
 logs/
+
+target/
+dbt_packages/
+logs/
