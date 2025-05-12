@@ -172,3 +172,9 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+credentials.json
+.pre-commit-config.yaml
+profiles.yml
+.user.yml
+logs/

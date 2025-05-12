@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: stg_pubmed
+    description: "Staging table for pubmed table."
+    columns:
+      - name: id
+        description: "Unique identifier for the pubmed."
+        tests:
+          - not_null
+          - unique
+
+     
