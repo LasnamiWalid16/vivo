@@ -9,7 +9,7 @@ Data pipeline to extract and merge drug mentions from scientific publications an
     - Staging Folder containing All source data transformed
     - SQL model named marts/drug_graph which is a table for the JSON output (nested columns)
     - SQL model named marts/journal_most_mention_drugs.sql
-4. traitement_ad_hook: The folder output contains the results:
+4. traitement_ad_hook: The folder **output** contains the results:
     - drug_graph.json
     - top_journals.json
     - ETHANOL.json (Related drugs references by the same journal and not clinical_trials)
