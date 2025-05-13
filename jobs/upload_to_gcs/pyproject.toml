@@ -20,6 +20,7 @@ packages = [{include = "upload_to_gcs", from = "src"}]
 pytest = "^8.3.5"
 pytest-mock = "^3.14.0"
 python-dotenv = "^1.1.0"
+pre-commit = "^4.2.0"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
