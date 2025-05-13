@@ -185,3 +185,5 @@ logs/
 
 .ruff_cache
 commands_dbt.txt
+
+poetry.lock
