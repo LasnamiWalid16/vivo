@@ -187,3 +187,4 @@ logs/
 commands_dbt.txt
 
 poetry.lock
+.typos.toml
