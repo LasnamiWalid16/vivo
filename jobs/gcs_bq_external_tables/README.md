@@ -1,0 +1,1 @@
+poetry run python src/gcs_bq_external_tables/main.py   

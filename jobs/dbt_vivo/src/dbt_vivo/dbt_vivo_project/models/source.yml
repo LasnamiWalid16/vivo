@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: vivo
+    tables:
+      - name: clinical_trials
+      - name: drugs
+      - name: pubmed
+      - name: pubmed_json

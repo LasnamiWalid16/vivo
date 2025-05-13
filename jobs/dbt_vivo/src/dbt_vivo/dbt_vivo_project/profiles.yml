@@ -1,0 +1,25 @@
+dbt_vivo_project:
+  outputs:
+    dev:
+      dataset: "{{ env_var('DBT_DATASET_DEV') }}" 
+      job_execution_timeout_seconds: 300
+      job_retries: 1
+      keyfile: "{{ env_var('KEYPATH_DEV') }}"
+      location: "{{ env_var('LOCATION_DEV') }}"
+      method: service-account
+      priority: interactive
+      project: "{{ env_var('PROJECT_ID') }}"
+      threads: 1
+      type: bigquery
+    prod:
+      dataset: "{{ env_var('DBT_DATASET_PROD') }}" 
+      job_execution_timeout_seconds: 300
+      job_retries: 1
+      keyfile: "{{ env_var('KEYPATH_PROD') }}"
+      location: "{{ env_var('LOCATION_PROD') }}"
+      method: service-account
+      priority: interactive
+      project: "{{ env_var('PROJECT_ID') }}"
+      threads: 1
+      type: bigquery
+  target: prod

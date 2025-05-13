@@ -1,0 +1,23 @@
+[project]
+name = "gcs-bq-external-tables"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Lasnami Abdelkarim",email = "81482604+LasnamiWalid16@users.noreply.github.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "google-cloud-bigquery (>=3.32.0,<4.0.0)",
+    "google-cloud-storage (>=3.1.0,<4.0.0)",
+    "pandas (>=2.2.3,<3.0.0)",
+    "python-dotenv (>=1.1.0,<2.0.0)"
+]
+
+[tool.poetry]
+packages = [{include = "gcs_bq_external_tables", from = "src"}]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
