@@ -1,0 +1,26 @@
+[project]
+name = "traitement-ad-hook"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Lasnami Abdelkarim",email = "81482604+LasnamiWalid16@users.noreply.github.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pathlib (>=1.0.1,<2.0.0)",
+    "pandas (>=2.2.3,<3.0.0)",
+    "google-cloud (>=0.34.0,<0.35.0)",
+    "dotenv (>=0.9.9,<0.10.0)",
+    "google (>=3.0.0,<4.0.0)",
+    "google-cloud-bigquery (>=3.32.0,<4.0.0)",
+    "db-dtypes (>=1.4.3,<2.0.0)"
+]
+
+[tool.poetry]
+packages = [{include = "traitement_ad_hook", from = "src"}]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
