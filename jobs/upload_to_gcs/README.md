@@ -24,10 +24,10 @@ Before running the job, make sure you have:
    ```bash
    poetry install
 
-2. Create a .env file in the root folder with the following content:
-```.env
-BUCKET_NAME=your-gcs-bucket-name
-SERVICE_ACCOUNT_FILE=path/to/your/service-account-key.json
+2. Create a .env file in the root of your project and insert your key/value pairs in the following format of KEY=VALUE:
+    ```.env
+    BUCKET_NAME=your-gcs-bucket-name
+    SERVICE_ACCOUNT_FILE=path/to/your/service-account-key.json
 
 3. Run the Job
    ```bash
