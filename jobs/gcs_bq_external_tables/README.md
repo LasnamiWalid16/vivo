@@ -13,8 +13,8 @@ Before running the job, make sure you have:
 Inside **src/gcs_bq_external_tables**, the logic for creating external tables is as follows:
 - **config.py**: Loads environment variables
 - **gcs_bq_utils**: It is composed of two main functions:
-    - create_external_table_from_csv: handle json files
-    - create_external_table_from_json:  handle csv files
+    - create_external_table_from_csv: handle csv files
+    - create_external_table_from_json:  handle json files
 - **main.py**: Calls both functions above 
 
 ## Setup
@@ -33,4 +33,4 @@ Inside **src/gcs_bq_external_tables**, the logic for creating external tables is
 
 3. Run the Job
    ```bash
-   python src/gcs_bq_external_tables/main.py
+   poetry run python src/gcs_bq_external_tables/main.py

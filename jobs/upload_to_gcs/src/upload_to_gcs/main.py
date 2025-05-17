@@ -11,5 +11,5 @@ if __name__ == "__main__":
     )  # Get all files (list) paths located in the folder'data'
     for file_path in file_paths:
         upload_file_to_gcs(
-            file_path, BUCKET_NAME, SERVICE_ACCOUNT_FILE
+            file_path, BUCKET_NAME, SERVICE_ACCOUNT_FILE, folder="data"
         )  # Upload each file in file_paths list

@@ -40,4 +40,4 @@ Inside **src/upload_to_gcs**, the logic for uploading files is as follows:
 
 4. Run the Job
    ```bash
-   python src/upload_to_gcs/main.py
+   poetry run python src/upload_to_gcs/main.py
