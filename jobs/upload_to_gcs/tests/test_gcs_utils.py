@@ -7,8 +7,8 @@ def test_list_file_paths_in_directory(tmp_path):
     # Setup test directory and files
     file1 = tmp_path / "test1.csv"
     file2 = tmp_path / "test2.json"
-    file1.write_text("sample,csv,data")
-    file2.write_text('[{"name": "test"}]')
+    file1.write_text("dreug1,drug2,drug3")
+    file2.write_text('[{"drug": "test"}]')
 
     # Run function
     result = list_file_paths_in_directory(str(tmp_path))
