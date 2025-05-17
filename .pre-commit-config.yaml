@@ -1,0 +1,23 @@
+repos:
+  - repo: https://github.com/python-poetry/poetry
+    rev: "2.1.2"
+    hooks:
+      - id: poetry-check
+        args: ["-C", "./jobs/upload_to_gcs"]
+      - id: poetry-lock
+        args: ["-C", "./jobs/upload_to_gcs"]
+      - id: poetry-install
+        args: ["-C", "./jobs/upload_to_gcs"]
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.9.4
+    hooks:
+      - id: ruff
+        args: ["--select", "I", "--fix"]
+      - id: ruff-format
+
+  - repo: https://github.com/crate-ci/typos
+    rev: v1.29.5
+    hooks:
+      - id: typos
+        exclude: ^jobs/upload_to_gcs/data/|^jobs/traitement_ad_hook/output/

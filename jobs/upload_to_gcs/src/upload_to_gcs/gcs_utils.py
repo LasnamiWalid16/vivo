@@ -1,7 +1,9 @@
 import json
 import logging
 import os
+import re
 
+from config import MOCK_MODE
 from google.cloud import storage
 
 logging.basicConfig(level=logging.INFO)
@@ -15,13 +17,11 @@ def list_file_paths_in_directory(directory_path: str) -> list[str]:
             for f in os.listdir(directory_path)
             if os.path.isfile(os.path.join(directory_path, f))
         ]
-        logger.info(
-            f"{len(file_paths)} fichier(s) trouvé(s) dans le répertoire '{directory_path}'"
-        )
+        logger.info(f"{len(file_paths)} files found in '{directory_path}'")
         return file_paths
     except Exception as e:
         logger.error(
-            f"Erreur lors de la lecture du répertoire {directory_path}: {e}",
+            f"Error while reading the directory {directory_path}: {e}",
             exc_info=True,
         )
         return []
@@ -31,9 +31,16 @@ def upload_file_to_gcs(
     path: str, bucket_name: str, service_account_file: str, folder: str = "raw_data"
 ) -> None:
     """
-    Upload un fichier CSV ou JSON dans un bucket GCS, dans le dossier spécifié.
-    Si c'est un JSON contenant une liste (array), il est converti à la volée en NDJSON.
+    Upload CSV/JSON to GCS bucket (folder by default = raw_data)
+    If the file extension is json it will convert it to NDJSON.
     """
+    if (
+        MOCK_MODE == True
+    ):  # If not GCP envirement than dont execute the block for uploading
+        logger.info(
+            f"[MOCK_MODE] Simulated upload for file {path} to bucket {bucket_name}"
+        )
+        return
     try:
         if not os.path.isfile(path):
             raise FileNotFoundError(f"Fichier introuvable: {path}")
@@ -50,6 +57,10 @@ def upload_file_to_gcs(
             with open(path, "r", encoding="utf-8") as f:
                 first_char = f.read(1)
                 f.seek(0)
+                content = f.read()
+                # Remove last ",]" if exists
+                content = re.sub(r",\s*\]", "]", content)  # Nettoyage simple
+
                 if first_char == "[":  # tableau JSON → NDJSON
                     data = json.load(f)
                     if not isinstance(data, list):
@@ -81,4 +92,6 @@ def upload_file_to_gcs(
         logger.info(f"Fichier uploadé avec succès: gs://{bucket_name}/{blob_name}")
 
     except Exception as e:
-        logger.error(f"Erreur lors de l'upload du fichier vers GCS: {e}", exc_info=True)
+        logger.error(
+            f"Erreur lors de l'upload du fichier {path} vers GCS: {e}", exc_info=True
+        )

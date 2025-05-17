@@ -7,7 +7,6 @@ def test_env_variables_are_loaded(monkeypatch):
     monkeypatch.setenv("BUCKET_NAME", "my-bucket")
     monkeypatch.setenv("SERVICE_ACCOUNT_FILE", "credentials.json")
 
-    # Reimport config to refresh loaded variables
     from importlib import reload
 
     reload(config)
