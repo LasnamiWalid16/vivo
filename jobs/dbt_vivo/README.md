@@ -12,7 +12,7 @@ Before running the job, make sure you have:
 ## How it works
 Inside **\src\dbt_vivo\dbt_vivo_project**, the logic for modeling:
 - **models\staging**: Folder containing All source data transformed
-    - stg_raw_pubmed.sql: Final table with union of the two pubmed sources (pubmed.csv & pubmed.json)
+    - stg_raw_pubmed.sql: Final table for the pubmed data with union of the two pubmed sources (pubmed.csv & pubmed.json)
     - The others sources are also created as tables (clinical_trials.sql, drugs.sql)
     - yml file for each model for meta data documentation and testing
 - **models\marts**: Two sql models:
@@ -42,7 +42,7 @@ Inside **\src\dbt_vivo\dbt_vivo_project**, the logic for modeling:
     $env:DBT_DATASET_PROD="vivo_dbt_dev" 
     $env:KEYPATH_PROD=path-to-service-account-json-key
     $env:LOCATION_PROD=dbt-dataset-location
-
+    ```
     - if you are on MAC/linux:
     ```bash
     export PROJECT_ID=gcp-project-id
