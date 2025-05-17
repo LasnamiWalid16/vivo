@@ -11,7 +11,7 @@ Before running the job, make sure you have:
 - A service account key with access to GCS (At least **Storage Object User** role)
 
 ## How it works
-Inside src/upload_to_gcs, the logic for uploading files is as follows:
+Inside **src/upload_to_gcs**, the logic for uploading files is as follows:
 - **config.py**: Loads environment variables
 - **gcs_utils.py**:  
   - **list_file_paths_in_directory**: Lists all files inside the `data/` folder.  
@@ -34,7 +34,7 @@ Inside src/upload_to_gcs, the logic for uploading files is as follows:
 3. Tests: Two test files are defined:
    - **test_gcs_utils.py** : unit test file test_gcs_utils.py that tests the list_file_paths_in_directory function by creating two dummy files in a temporary directory using Python's tempfile module
    - **test_config**: test the env variables loading
-   - Run the test:
+   - Run the tests:
    ```bash
    poetry run pytest
 

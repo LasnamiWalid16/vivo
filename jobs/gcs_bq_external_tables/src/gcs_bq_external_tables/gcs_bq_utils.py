@@ -19,8 +19,8 @@ def create_external_table_from_csv(
     schema: list = None,
 ) -> None:
     """
-    Crée une table externe BigQuery à partir d’un fichier CSV dans GCS,
-    avec un schéma défini ou autodetect.
+    Create an external BigQuery table from a CSV file in GCS,
+    with either a defined schema or schema autodetect.
     """
     try:
         client = bigquery.Client.from_service_account_json(
@@ -32,14 +32,14 @@ def create_external_table_from_csv(
         )
 
         client.delete_table(table_ref, not_found_ok=True)
-        logger.info(f"Ancienne table supprimée: {project_id}.{dataset_id}.{table_id}")
+        logger.info(f"Old table deleted: {project_id}.{dataset_id}.{table_id}")
 
         external_config = bigquery.ExternalConfig(bigquery.SourceFormat.CSV)
         external_config.source_uris = [gcs_uri]
         external_config.options.skip_leading_rows = 1
         external_config.autodetect = autodetect
 
-        # Si un schéma est fourni, l'appliquer
+        # Apply schema (if given)
         if schema:
             external_config.schema = [
                 bigquery.SchemaField(field["name"], field["type"]) for field in schema
@@ -51,13 +51,11 @@ def create_external_table_from_csv(
 
         table = client.create_table(table)
         logger.info(
-            f"Table externe créée: {project_id}.{dataset_id}.{table_id} - {gcs_uri}"
+            f"External table created: {project_id}.{dataset_id}.{table_id} - {gcs_uri}"
         )
 
     except Exception as e:
-        logger.error(
-            f"Erreur lors de la création de la table externe: {e}", exc_info=True
-        )
+        logger.error(f"Error while creation external table: {e}", exc_info=True)
 
 
 def create_external_table_from_json(
@@ -71,8 +69,8 @@ def create_external_table_from_json(
     json_format: str = "NEWLINE_DELIMITED_JSON",
 ) -> None:
     """
-    Crée une table externe BigQuery à partir d’un fichier JSON dans GCS,
-    avec un schéma défini ou autodetect.
+    Create an external BigQuery table from a json file in GCS,
+    with either a defined schema or schema autodetect.
     """
     try:
         client = bigquery.Client.from_service_account_json(
@@ -84,7 +82,7 @@ def create_external_table_from_json(
         )
 
         client.delete_table(table_ref, not_found_ok=True)
-        logger.info(f"Ancienne table supprimée: {project_id}.{dataset_id}.{table_id}")
+        logger.info(f"Old table deleted: {project_id}.{dataset_id}.{table_id}")
 
         external_config = bigquery.ExternalConfig(
             bigquery.SourceFormat.NEWLINE_DELIMITED_JSON
@@ -103,10 +101,8 @@ def create_external_table_from_json(
 
         client.create_table(table)
         logger.info(
-            f"Table externe JSON créée: {project_id}.{dataset_id}.{table_id} - {gcs_uri}"
+            f"External table created: {project_id}.{dataset_id}.{table_id} - {gcs_uri}"
         )
 
     except Exception as e:
-        logger.error(
-            f"Erreur lors de la création de la table externe JSON: {e}", exc_info=True
-        )
+        logger.error(f"Error while creating external table: {e}", exc_info=True)

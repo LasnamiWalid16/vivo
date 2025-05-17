@@ -2,7 +2,7 @@ from config import DATASET_ID, GCS_URI, PROJECT_ID, SERVICE_ACCOUNT_FILE
 from gcs_bq_utils import create_external_table_from_csv, create_external_table_from_json
 
 if __name__ == "__main__":
-    # Reference drugs table
+    # drug table schema
     schema = [{"name": "atccode", "type": "STRING"}, {"name": "drug", "type": "STRING"}]
 
     gcs_uri = f"{GCS_URI.rstrip('/')}/drugs.csv"
@@ -16,7 +16,7 @@ if __name__ == "__main__":
         schema=schema,
     )
 
-    # Reference pubmed table
+    # pubmed table schema
     schema = [
         {"name": "id", "type": "STRING"},
         {"name": "title", "type": "STRING"},
@@ -35,7 +35,7 @@ if __name__ == "__main__":
         schema=schema,
     )
 
-    # Reference clinical_trials table
+    # clinical_trials table schema
     schema = [
         {"name": "id", "type": "STRING"},
         {"name": "scientific_title", "type": "STRING"},
@@ -54,7 +54,7 @@ if __name__ == "__main__":
         schema=schema,
     )
 
-    # Reference pubmed.json table
+    # pubmed.json table schema
     schema = [
         {"name": "id", "type": "STRING"},
         {"name": "title", "type": "STRING"},
