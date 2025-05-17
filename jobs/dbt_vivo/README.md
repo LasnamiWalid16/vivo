@@ -1,21 +1,26 @@
-# Create external tables in BigQuery
+# DBT JOB
 
-This job creates external tables in BigQuery, referring to the files uploaded to the GCS bucket by the upload_to_gcs job.
+This job Transform the raw data (external tables) to actionable models
 
 ## Prerequisites
 
 Before running the job, make sure you have:
 
-- BigQuery dataset
-- A service account key with access to GCS **bigquery.dataEditor** role
+- BigQuery dataset for dbt transformation
+- A service account key with access to BIGQUERY **bigquery.dataEditor** role
 
 ## How it works
-Inside **src/gcs_bq_external_tables**, the logic for creating external tables is as follows:
-- **config.py**: Loads environment variables
-- **gcs_bq_utils**: It is composed of two main functions:
-    - create_external_table_from_csv: handle csv files
-    - create_external_table_from_json:  handle json files
-- **main.py**: Calls both functions above 
+Inside **\src\dbt_vivo\dbt_vivo_project**, the logic for modeling:
+- **models\staging**: Folder containing All source data transformed
+    - stg_raw_pubmed.sql: Final table with union of the two pubmed sources (pubmed.csv & pubmed.json)
+    - The others sources are also created as tables (clinical_trials.sql, drugs.sql)
+    - yml file for each model for meta data documentation and testing
+- **models\marts**: Two sql models:
+    - drug_graph.sql: the json that represent the output asked (graphe de liaison entre les différents médicaments)
+    - journal_most_mention_drugs.sql: contains the results of the question Traitement ad-hoc (first question)
+- **macros\format_date.sql**:
+    - macro named format_date(date_column) that transform the string date column to date type
+- **\src\dbt_vivo\main.py**: Run the dbt job 
 
 ## Setup
 
@@ -25,12 +30,27 @@ Inside **src/gcs_bq_external_tables**, the logic for creating external tables is
 
 2. Create a .env file in the root of your project and insert your key/value pairs in the following format of KEY=VALUE:
     ```.env
-    BUCKET_NAME=bucket-name
-    SERVICE_ACCOUNT_FILE=path-to-json-key
     PROJECT_ID=gcp-project-id
-    DATASET_ID=data-set-id
-    GCS_URI=files-location-uri-in-the-gcs-bucket
+    DBT_DATASET_PROD=dbt-dataset
+    KEYPATH_PROD=path-to-service-account-json-key
+    LOCATION_PROD=dbt-dataset-location
 
-3. Run the Job
+3. Make sure to export the env variables:
+    - if you are on windows:
+    ```powershell
+    $env:PROJECT_ID=gcp-project-id
+    $env:DBT_DATASET_PROD="vivo_dbt_dev" 
+    $env:KEYPATH_PROD=path-to-service-account-json-key
+    $env:LOCATION_PROD=dbt-dataset-location
+
+    - if you are on MAC/linux:
+    ```bash
+    export PROJECT_ID=gcp-project-id
+    export DBT_DATASET_PROD="vivo_dbt_dev" 
+    export KEYPATH_PROD=path-to-service-account-json-key
+    export LOCATION_PROD=dbt-dataset-location
+
+
+4. Run the Job
    ```bash
    poetry run python src/dbt_vivo/main.py
