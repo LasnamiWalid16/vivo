@@ -1,6 +1,6 @@
 # Upload to GCS
 
-This job uploads local CSV and JSON files to a Google Cloud Storage (GCS) bucket.  
+This job uploads local CSV and JSON files to a Google Cloud Storage bucket.  
 
 ## Prerequisites
 
@@ -13,7 +13,7 @@ Before running the job, make sure you have:
 ## How it works
 Inside **src/upload_to_gcs**, the logic for uploading files is as follows:
 - **config.py**: Loads environment variables
-- **gcs_utils.py**:  
+- **gcs_utils.py** contains two main functions:  
   - **list_file_paths_in_directory**: Lists all files inside the `data/` folder.  
   - **upload_file_to_gcs**: Uploads each file to GCS. It is composed of two main functions:
       - upload_json_to_gcs: handle json files
@@ -32,7 +32,7 @@ Inside **src/upload_to_gcs**, the logic for uploading files is as follows:
     SERVICE_ACCOUNT_FILE=path/to/your/service-account-key.json
 
 3. Tests: Two test files are defined:
-   - **test_gcs_utils.py** : unit test file test_gcs_utils.py that tests the list_file_paths_in_directory function by creating two dummy files in a temporary directory using Python's tempfile module
+   - **test_gcs_utils.py** : unit test file test_gcs_utils.py that tests the list_file_paths_in_directory function by creating two dummy files in a temporary directory using python's tempfile module
    - **test_config**: test the env variables loading
    - Run the tests:
    ```bash
