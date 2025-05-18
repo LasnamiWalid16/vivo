@@ -16,7 +16,7 @@ Data pipeline to extract and merge drug mentions from scientific publications an
     - ETHANOL.json (Related drugs references by the same journals and not clinical_trials)
 5. **sql_test**: SQL test (Not considered a job
 ## How to Run the Pipeline:
-- Ensure you are at the root of the vivo project (Make sure to locate to each job and install the dependencies refer to each job's doc readme.md file).
+- Ensure you are at the root of the vivo project (Before running the jobs, Make sure to locate to each job and install the dependencies refer to each job's doc readme.md file).
 - Run the orchestration script:
   ```bash
   python run_jobs.py
