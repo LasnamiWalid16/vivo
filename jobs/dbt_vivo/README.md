@@ -18,8 +18,10 @@ Inside **\src\dbt_vivo\dbt_vivo_project**, the logic for modeling:
 - **models\marts**: Two sql models:
     - drug_graph.sql: the json that represent the output asked (graphe de liaison entre les différents médicaments)
     - journal_most_mention_drugs.sql: contains the results of the question Traitement ad-hoc (first question)
-- **macros\format_date.sql**:
-    - macro named format_date(date_column) that transform the string date column to date type
+- **macros**:
+    - format_date.sql: macro named **format_date(date_column)** that transform the string date column to date type
+    - string_utils.sql: macro named **clean_string(column_name)** clean the string column (if empty/null then return null)
+- **packages.yml**: I've added the dbt_utils package to simplify the tests in the model's yml files doc
 - **\src\dbt_vivo\main.py**: Run the dbt job 
 
 ## Setup
@@ -50,6 +52,8 @@ Inside **\src\dbt_vivo\dbt_vivo_project**, the logic for modeling:
     export KEYPATH_PROD=path-to-service-account-json-key
     export LOCATION_PROD=dbt-dataset-location
 
-4. Run the Job
+4. **Run the dbt Job**. The main.py contains two bash commands:
+    - dbt deps : to install the packages in the file packages.yml
+    - dbt build : run both dbt run & dbt test
    ```bash
    poetry run python src/dbt_vivo/main.py

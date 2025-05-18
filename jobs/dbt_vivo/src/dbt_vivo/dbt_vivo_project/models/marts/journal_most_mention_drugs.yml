@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: journal_most_mention_drugs
+    description: >
+      This model returns the journal(s) with the highest number of distinct drug mentions.
+      It uses the `drug_graph` model and unnests the `mentions` array to count distinct atccode per journal.
+
+    columns:
+      - name: journal
+        description: Name of the journal with the highest number of drug mentions.
+        tests:
+          - not_null:
+              severity: warn
+
+      - name: total_mention_drugs
+        description: Total number of distinct drugs (based on atccode) mentioned in the journal.
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+              inclusive: false 
+              severity: error
+
+

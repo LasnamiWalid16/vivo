@@ -4,13 +4,23 @@ from dbt.cli.main import dbtRunner
 
 project_dir = pathlib.Path(__file__).parent / "dbt_vivo_project"
 
-# Run dbt run
+# Initialize dbt runner
 dbt = dbtRunner()
-res = dbt.invoke(["run", "--project-dir", str(project_dir)])
 
-# print results
-if res.result:
-    for r in res.result:
+# Run dbt deps
+deps_result = dbt.invoke(["deps", "--project-dir", str(project_dir)])
+if deps_result.success:
+    print("dbt deps completed successfully.")
+else:
+    print("dbt deps failed.")
+    exit(1)
+
+# Run dbt build
+run_result = dbt.invoke(["build", "--project-dir", str(project_dir)])
+
+# Print results
+if run_result.result:
+    for r in run_result.result:
         print(f"{r.node.name}: {r.status}")
 else:
-    print("No results returned from dbt run.")
+    print("No results returned from dbt build.")

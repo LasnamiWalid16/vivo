@@ -187,5 +187,5 @@ commands_dbt.txt
 
 poetry.lock
 .typos.toml
-
+dbt_packages/
 #.pre-commit-config.yaml

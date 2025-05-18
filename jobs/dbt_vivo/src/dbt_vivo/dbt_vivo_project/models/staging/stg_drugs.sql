@@ -1,7 +1,7 @@
 WITH source_drugs AS (
     SELECT
-        atccode,
-        trim(drug) AS drug
+        {{ clean_string('atccode') }} AS atccode,
+        {{ clean_string('drug') }} AS drug
     FROM 
         {{source('vivo','drugs')}}
 )
