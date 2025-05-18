@@ -30,14 +30,16 @@ Inside **\src\dbt_vivo\dbt_vivo_project**, the logic for modeling:
    ```bash
    poetry install
 
-2. Create a .env file in the root of your project and insert your key/value pairs in the following format of KEY=VALUE:
+2. Add the service account JSON key file to the root directory of the job.
+
+3. Create a .env file in the root of your project and insert your key/value pairs in the following format of KEY=VALUE:
     ```.env
     PROJECT_ID=gcp-project-id
     DBT_DATASET_PROD=dbt-dataset
     KEYPATH_PROD=path-to-service-account-json-key
     LOCATION_PROD=dbt-dataset-location
 
-3. Make sure to export the env variables:
+4. Make sure to export the env variables:
     - if you are on windows:
     ```powershell
     $env:PROJECT_ID=gcp-project-id
@@ -52,7 +54,7 @@ Inside **\src\dbt_vivo\dbt_vivo_project**, the logic for modeling:
     export KEYPATH_PROD=path-to-service-account-json-key
     export LOCATION_PROD=dbt-dataset-location
 
-4. **Run the dbt Job**. The main.py contains two bash commands:
+5. **Run the dbt Job**. The main.py contains two bash commands:
     - dbt deps : to install the packages in the file packages.yml
     - dbt build : run both dbt run & dbt test
    ```bash

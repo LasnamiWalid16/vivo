@@ -7,7 +7,7 @@ project_dir = pathlib.Path(__file__).parent / "dbt_vivo_project"
 # Initialize dbt runner
 dbt = dbtRunner()
 
-# Run dbt deps
+# Run dbt deps - install packages
 deps_result = dbt.invoke(["deps", "--project-dir", str(project_dir)])
 if deps_result.success:
     print("dbt deps completed successfully.")

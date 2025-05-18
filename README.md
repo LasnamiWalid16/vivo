@@ -20,3 +20,7 @@ Data pipeline to extract and merge drug mentions from scientific publications an
 - Run the orchestration script:
   ```bash
   python run_jobs.py
+
+
+## The drug_graph table created in bigquery:
+![Drug Graph json](images/vivo-bigquery.png)

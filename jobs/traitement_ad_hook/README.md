@@ -26,20 +26,22 @@ Inside **src/traitement_ad_hook**, :
    ```bash
    poetry install
 
-2. Create a .env file in the root of your project and insert your key/value pairs in the following format of KEY=VALUE:
+2. Add the service account JSON key file to the root directory of the job.
+
+3. Create a .env file in the root of your project and insert your key/value pairs in the following format of KEY=VALUE:
     ```.bash
    PROJECT_ID=gcp-project-id
    DATASET_ID=dbt-dataset
    TABLE_ID=drug_graph
    SERVICE_ACCOUNT_FILE=path-to-service-account-json
 
-3. Tests: Two test files are defined:
+4. Tests: Two test files are defined:
    - **test_gcs_utils.py** : unit test file test_gcs_utils.py that tests the list_file_paths_in_directory function by creating two dummy files in a temporary directory using Python's tempfile module
    - **test_config**: test the env variables loading
    - Run the tests:
    ```bash
    poetry run pytest
 
-4. Run the Job
+5. Run the Job
    ```bash
    poetry run python src/traitement_ad_hook/main.py

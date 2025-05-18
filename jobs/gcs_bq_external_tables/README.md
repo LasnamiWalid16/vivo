@@ -23,7 +23,9 @@ Inside **src/gcs_bq_external_tables**, the logic for creating external tables is
    ```bash
    poetry install
 
-2. Create a .env file in the root of your project and insert your key/value pairs in the following format of KEY=VALUE:
+2. Add the service account JSON key file to the root directory of the job.
+
+3. Create a .env file in the root of your project and insert your key/value pairs in the following format of KEY=VALUE:
     ```.env
     BUCKET_NAME=bucket-name
     SERVICE_ACCOUNT_FILE=path-to-json-key
@@ -31,6 +33,6 @@ Inside **src/gcs_bq_external_tables**, the logic for creating external tables is
     DATASET_ID=data-set-id
     GCS_URI=files-location-uri-in-the-gcs-bucket
 
-3. Run the Job
+4. Run the Job
    ```bash
    poetry run python src/gcs_bq_external_tables/main.py
