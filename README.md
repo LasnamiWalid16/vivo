@@ -8,15 +8,15 @@ Data pipeline to extract and merge drug mentions from scientific publications an
 3. **dbt_vivo**: DBT Job to transform and clean data:
     - I've created a macros named **format_date** to transform date column
     - Staging Folder containing All source data transformed
-    - SQL model named marts/drug_graph which is a table for the JSON output (nested columns)
+    - SQL model named marts/drug_graph.sql which is a table for the JSON output (nested columns)
     - SQL model named marts/journal_most_mention_drugs.sql
 4. **traitement_ad_hook**: The folder **output** contains the results:
     - drug_graph.json
     - top_journals.json
     - ETHANOL.json (Related drugs references by the same journals and not clinical_trials)
-5. **sql_test**: SQL test (Not considered a job
+5. **sql_test**: SQL test (Not considered a job)
 ## How to Run the Pipeline:
-- Ensure you are at the root of the vivo project (Before running the jobs, Make sure to locate to each job and install the dependencies refer to each job's doc readme.md file).
+- Ensure you are at the root of the vivo project (Before running the jobs, Make sure to navigate to each job's directory and install its dependencies. Refer to the job's README.md file for instructions).
 - Run the orchestration script:
   ```bash
   python run_jobs.py
