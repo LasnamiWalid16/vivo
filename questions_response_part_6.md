@@ -4,7 +4,7 @@
 
 - Utilisation de **Spark** pour le traitement distribué.
 - Chargement des fichiers en parallèle vers un **Cloud Storage** pour optimiser les temps d’ingestion.
-- Utilisation d’une architecture **ELT** avec **DBT**, permettant de transformer les données directement dans le data warehouse.
+- Utilisation d’une architecture **ELT** avec **DBT/Dataform**, permettant de transformer les données directement dans le data warehouse.
 - Mise en place de **tests automatiques** avec DBT pour assurer la fiabilité des données.
 - Partitioning, Indexing, Clustering des données dans BigQuery pour améliorer les performances de requêtes SQL.
 

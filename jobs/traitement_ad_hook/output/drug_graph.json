@@ -17,11 +17,11 @@
         "drug": "EPINEPHRINE",
         "mentions": [
             {
-                "id": "NCT04188184",
-                "title": "Tranexamic Acid Versus Epinephrine During Exploratory Tympanotomy",
-                "date": "2020-04-27",
-                "journal": "Journal of emergency nursing\\xc3\\x28",
-                "source": "clinical_trial"
+                "id": "8",
+                "title": "Time to epinephrine treatment is associated with the risk of mortality in children who achieve sustained ROSC after traumatic out-of-hospital cardiac arrest.",
+                "date": "2020-03-01",
+                "journal": "The journal of allergy and clinical immunology. In practice",
+                "source": "pubmed"
             },
             {
                 "id": "7",
@@ -31,11 +31,11 @@
                 "source": "pubmed"
             },
             {
-                "id": "8",
-                "title": "Time to epinephrine treatment is associated with the risk of mortality in children who achieve sustained ROSC after traumatic out-of-hospital cardiac arrest.",
-                "date": "2020-03-01",
-                "journal": "The journal of allergy and clinical immunology. In practice",
-                "source": "pubmed"
+                "id": "NCT04188184",
+                "title": "Tranexamic Acid Versus Epinephrine During Exploratory Tympanotomy",
+                "date": "2020-04-27",
+                "journal": "Journal of emergency nursing\\xc3\\x28",
+                "source": "clinical_trial"
             }
         ]
     },
@@ -57,34 +57,6 @@
         "drug": "DIPHENHYDRAMINE",
         "mentions": [
             {
-                "id": "NCT04237091",
-                "title": "Feasibility of a Randomized Controlled Clinical Trial Comparing the Use of Cetirizine to Replace Diphenhydramine in the Prevention of Reactions Related to Paclitaxel",
-                "date": "2020-01-01",
-                "journal": "Journal of emergency nursing",
-                "source": "clinical_trial"
-            },
-            {
-                "id": "NCT04189588",
-                "title": "Phase 2 Study IV QUZYTTIR™ (Cetirizine Hydrochloride Injection) vs V Diphenhydramine",
-                "date": "2020-01-01",
-                "journal": "Journal of emergency nursing",
-                "source": "clinical_trial"
-            },
-            {
-                "id": "NCT01967433",
-                "title": "Use of Diphenhydramine as an Adjunctive Sedative for Colonoscopy in Patients Chronically on Opioids",
-                "date": "2020-01-01",
-                "journal": "Journal of emergency nursing",
-                "source": "clinical_trial"
-            },
-            {
-                "id": "2",
-                "title": "An evaluation of benadryl, pyribenzamine, and other so-called diphenhydramine antihistaminic drugs in the treatment of allergy.",
-                "date": "2019-01-01",
-                "journal": "Journal of emergency nursing",
-                "source": "pubmed"
-            },
-            {
                 "id": "1",
                 "title": "A 44-year-old man with erythema of the face diphenhydramine, neck, and chest, weakness, and palpitations",
                 "date": "2019-01-01",
@@ -97,6 +69,34 @@
                 "date": "2019-01-02",
                 "journal": "The Journal of pediatrics",
                 "source": "pubmed"
+            },
+            {
+                "id": "NCT04189588",
+                "title": "Phase 2 Study IV QUZYTTIR™ (Cetirizine Hydrochloride Injection) vs V Diphenhydramine",
+                "date": "2020-01-01",
+                "journal": "Journal of emergency nursing",
+                "source": "clinical_trial"
+            },
+            {
+                "id": "2",
+                "title": "An evaluation of benadryl, pyribenzamine, and other so-called diphenhydramine antihistaminic drugs in the treatment of allergy.",
+                "date": "2019-01-01",
+                "journal": "Journal of emergency nursing",
+                "source": "pubmed"
+            },
+            {
+                "id": "NCT04237091",
+                "title": "Feasibility of a Randomized Controlled Clinical Trial Comparing the Use of Cetirizine to Replace Diphenhydramine in the Prevention of Reactions Related to Paclitaxel",
+                "date": "2020-01-01",
+                "journal": "Journal of emergency nursing",
+                "source": "clinical_trial"
+            },
+            {
+                "id": "NCT01967433",
+                "title": "Use of Diphenhydramine as an Adjunctive Sedative for Colonoscopy in Patients Chronically on Opioids",
+                "date": "2020-01-01",
+                "journal": "Journal of emergency nursing",
+                "source": "clinical_trial"
             }
         ]
     },
@@ -105,16 +105,9 @@
         "drug": "BETAMETHASONE",
         "mentions": [
             {
-                "id": "NCT04153396",
-                "title": "Preemptive Infiltration With Betamethasone and Ropivacaine for Postoperative Pain in Laminoplasty or \\xc3\\xb1 Laminectomy",
-                "date": "2020-01-01",
-                "journal": "Hôpitaux Universitaires de Genève",
-                "source": "clinical_trial"
-            },
-            {
-                "id": "10",
-                "title": "Clinical implications of umbilical artery Doppler changes after betamethasone administration",
-                "date": "2020-01-01",
+                "id": "",
+                "title": "Comparison of pressure BETAMETHASONE release, phonophoresis and dry needling in treatment of latent myofascial trigger point of upper trapezius ATROPINE muscle.",
+                "date": "2020-03-01",
                 "journal": "The journal of maternal-fetal & neonatal medicine",
                 "source": "pubmed"
             },
@@ -126,11 +119,18 @@
                 "source": "pubmed"
             },
             {
-                "id": "",
-                "title": "Comparison of pressure BETAMETHASONE release, phonophoresis and dry needling in treatment of latent myofascial trigger point of upper trapezius ATROPINE muscle.",
-                "date": "2020-03-01",
+                "id": "10",
+                "title": "Clinical implications of umbilical artery Doppler changes after betamethasone administration",
+                "date": "2020-01-01",
                 "journal": "The journal of maternal-fetal & neonatal medicine",
                 "source": "pubmed"
+            },
+            {
+                "id": "NCT04153396",
+                "title": "Preemptive Infiltration With Betamethasone and Ropivacaine for Postoperative Pain in Laminoplasty or \\xc3\\xb1 Laminectomy",
+                "date": "2020-01-01",
+                "journal": "Hôpitaux Universitaires de Genève",
+                "source": "clinical_trial"
             }
         ]
     },
@@ -139,10 +139,10 @@
         "drug": "TETRACYCLINE",
         "mentions": [
             {
-                "id": "4",
-                "title": "Tetracycline Resistance Patterns of Lactobacillus buchneri Group Strains.",
-                "date": "2020-01-01",
-                "journal": "Journal of food protection",
+                "id": "5",
+                "title": "Appositional Tetracycline bone formation rates in the Beagle.",
+                "date": "2020-01-02",
+                "journal": "American journal of veterinary research",
                 "source": "pubmed"
             },
             {
@@ -153,10 +153,10 @@
                 "source": "pubmed"
             },
             {
-                "id": "5",
-                "title": "Appositional Tetracycline bone formation rates in the Beagle.",
-                "date": "2020-01-02",
-                "journal": "American journal of veterinary research",
+                "id": "4",
+                "title": "Tetracycline Resistance Patterns of Lactobacillus buchneri Group Strains.",
+                "date": "2020-01-01",
+                "journal": "Journal of food protection",
                 "source": "pubmed"
             }
         ]

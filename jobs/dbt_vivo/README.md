@@ -7,7 +7,7 @@ This job Transform the raw data (external tables) to actionable models
 Before running the job, make sure you have:
 
 - BigQuery dataset for dbt transformation
-- A service account key with access to BIGQUERY **bigquery.dataEditor** role
+- A service account key with  **bigquery.dataEditor** role
 
 ## How it works
 Inside **\src\dbt_vivo\dbt_vivo_project**, the logic for modeling:
@@ -49,7 +49,6 @@ Inside **\src\dbt_vivo\dbt_vivo_project**, the logic for modeling:
     export DBT_DATASET_PROD="vivo_dbt_dev" 
     export KEYPATH_PROD=path-to-service-account-json-key
     export LOCATION_PROD=dbt-dataset-location
-
 
 4. Run the Job
    ```bash

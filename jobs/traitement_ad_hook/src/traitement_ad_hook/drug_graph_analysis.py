@@ -6,10 +6,9 @@ from bigquery_utils import (
 from config import PROJECT_ID, SERVICE_ACCOUNT_FILE
 
 
-def get_top_journals_by_unique_drugs() -> pd.DataFrame:
-    # Define variables
-    table_id = "drug_graph"
-    dataset_id = "vivo_dbt_dev"
+def get_top_journals_by_unique_drugs(
+    table_id: str = "drug_graph", dataset_id: str = "vivo_dbt_dev"
+) -> pd.DataFrame:
     full_table_id = f"{PROJECT_ID}.{dataset_id}.{table_id}"
     query = f"SELECT * FROM `{full_table_id}`"
 
@@ -44,15 +43,19 @@ def get_top_journals_by_unique_drugs() -> pd.DataFrame:
     return top_journals
 
 
-def get_drug_journals(drug: str) -> list[str]:
+def get_drugs_journal_pubmed(
+    drug: str, table_id: str = "drug_graph", dataset_id: str = "vivo_dbt_dev"
+) -> list[str]:
+    """
+    For the given drug, returns a list of drug names that are mentioned
+    by the same journals in PubMed but not found in Clinical Trials
+    """
     # Get the json drug_graph from bigquery
-    table_id = "drug_graph"
-    dataset_id = "vivo_dbt_dev"
     full_table_id = f"{PROJECT_ID}.{dataset_id}.{table_id}"
     query = f"SELECT * FROM `{full_table_id}`"
     data = get_bigquery_job_query_as_json(query, SERVICE_ACCOUNT_FILE)
 
-    # Extract unique journals where the drug is mentioned in pubmed only
+    # Get unique journals where the drug is mentioned in pubmed only -> json
     journals = {
         mention["journal"].strip()
         for row in data
@@ -61,8 +64,10 @@ def get_drug_journals(drug: str) -> list[str]:
         and drug.lower() in mention.get("title", "").lower()
     }
 
+    # Transform the json journals to list
     journals_list = list(journals)
 
+    # get drugs where pubmed journal in journals_list
     reference_journal_drugs_pubmed = {
         row["drug"]
         for row in data
@@ -71,6 +76,7 @@ def get_drug_journals(drug: str) -> list[str]:
         and mention.get("journal", "") in journals_list
     }
 
+    # get drugs where clinical_trial journal in journals_list
     reference_journal_drugs_clinical = {
         row["drug"]
         for row in data
