@@ -12,6 +12,5 @@
 
 - Intégration d’un orchestrateur comme **Airflow/Cloud Workflows** pour gérer les dépendances et l'exécution en DAG.
 - Parallélisation des tasks, par example le chargement des fichiers depuis GCS en parallèle.
-- Découpage des traitements en **étapes unitaires** réutilisables et testables.
 - Ajout de **systèmes de monitoring et d’alerting**
 - Utilisation de **formats optimisés** pour les gros volumes comme Parquet.
