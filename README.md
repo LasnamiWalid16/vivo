@@ -1,8 +1,10 @@
 # vivo
 Data pipeline to extract and merge drug mentions from scientific publications and clinical trials into a structured JSON file
 
-## The run_jobs.py is a script to run all the jobs subbsessquenly **upload_to_gcs** -> **gcs_bq_external_tables** -> **dbt_vivo** -> **traitement_ad_hook**
-**Please Refer to jobs folder I've created this folder to separate the logic for each job:**
+## run_jobs.py:
+This script runs all data pipeline jobs in the following sequence:
+
+## **Please Refer to jobs folder I've created this folder to separate the logic for each job:**
 1. upload_to_gcs: Upload raw data (csv/json files) to GCS bucket
 2. gcs_bq_external_tables: Create external tables in BigQuery referring to each file
 3. dbt_vivo: DBT Job to transform and clean data:
@@ -13,5 +15,5 @@ Data pipeline to extract and merge drug mentions from scientific publications an
 4. traitement_ad_hook: The folder **output** contains the results:
     - drug_graph.json
     - top_journals.json
-    - ETHANOL.json (Related drugs references by the same journal and not clinical_trials)
+    - ETHANOL.json (Related drugs references by the same journals and not clinical_trials)
 5. sql_test: SQL test
