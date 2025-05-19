@@ -7,7 +7,7 @@ This job Transform the raw data (external tables) to actionable models
 Before running the job, make sure you have:
 
 - BigQuery dataset for dbt transformation
-- A service account key with  **bigquery.dataEditor** role
+- A service account key with roles: **storage.objectViewer**, **bigquery.dataEditor** 
 
 ## How it works
 Inside **\src\dbt_vivo\dbt_vivo_project**, the logic for modeling:

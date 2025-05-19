@@ -5,7 +5,7 @@ This job export the drug_graph.json and answer the questions in bonus part
 ## Prerequisites
 
 Before running the job, make sure you have:
-- A service account key 
+- A service account key with roles: **bigquery.dataViewer**
 
 ## How it works
 Inside **src/traitement_ad_hook**, :

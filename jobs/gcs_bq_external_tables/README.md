@@ -7,7 +7,7 @@ This job creates external tables in BigQuery, referring to the files uploaded to
 Before running the job, make sure you have:
 
 - BigQuery dataset
-- A service account key with access to GCS **bigquery.dataEditor** role
+- A service account key with roles: **storage.objectViewer**, **bigquery.dataEditor**, **bigquery.user**
 
 ## How it works
 Inside **src/gcs_bq_external_tables**, the logic for creating external tables is as follows:
