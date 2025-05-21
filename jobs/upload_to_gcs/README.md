@@ -8,17 +8,18 @@ Before running the job, make sure you have:
 
 - A Google Cloud account.
 - A GCS bucket created.
-- A service account key with access to GCS (At least **Storage Object User** role)
+- The Google Cloud SDK (gcloud CLI) installed and initialized.
+- You are authenticated using the following command:
+   ```bash
+   gcloud auth application-default login
 
 ## How it works
 Inside **src/upload_to_gcs**, the logic for uploading files is as follows:
 - **config.py**: Loads environment variables
 - **gcs_utils.py** contains two main functions:  
   - **list_file_paths_in_directory**: Lists all files inside the `data/` folder.  
-  - **upload_file_to_gcs**: Uploads each file to GCS. It is composed of two main functions:
-      - upload_json_to_gcs: handle json files
-      - upload_csv_to_gcs:  handle csv files
-- **main.py**: Calls both functions above (list_file_paths_in_directory & upload_file_to_gcs ) to upload all files located in `data/` folder.
+  - **upload_blob**: Uploads each file to GCS. [https://cloud.google.com/storage/docs/uploading-objects]:
+- **main.py**: Calls both functions above (list_file_paths_in_directory & upload_blob ) to upload all files located in `data/` folder.
 
 ## Setup
 
@@ -26,14 +27,9 @@ Inside **src/upload_to_gcs**, the logic for uploading files is as follows:
    ```bash
    poetry install
 
-2. Add the service account JSON key file to the root directory of the job.
-
-3. Create a .env file in the root of your project and insert your key/value pairs in the following format of KEY=VALUE:
+2. Create a .env file in the root of your project and insert your key/value pairs in the following format of KEY=VALUE:
     ```.env
     BUCKET_NAME=your-gcs-bucket-name
-    SERVICE_ACCOUNT_FILE=path/to/your/service-account-key.json
-
-
 
 4. Tests: Two test files are defined:
    - **test_gcs_utils.py** : unit test file test_gcs_utils.py that tests the list_file_paths_in_directory function by creating two dummy files in a temporary directory using python's tempfile module

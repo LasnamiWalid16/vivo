@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: drug_graph
+    description: >
+      drug graph model that represent the relationship between the drugs
+      and their different mentionsin both clinical trials and pubmed.
+
+    columns:
+      - name: atccode
+        description: The unique code identifying the drug.
+        tests:
+          - not_null
+          - unique
+
+      - name: drug
+        description: The name of the drug being matched in titles.
+        tests:
+          - not_null
+          - unique
+
+      - name: mentions
+        description: >
+          An array of STRUCTTs, each representing a mention of the drug. Each struct contains:
+            - id: ID of the publication or clinical trial
+            - title: Title of the publication or trial
+            - date: Date of the publication or trial
+            - journal: Journal name
+            - source: Source of the mention (pubmed or clinical_trial)

@@ -28,83 +28,44 @@ def list_file_paths_in_directory(directory_path: str) -> list[str]:
         return []
 
 
-def upload_csv_to_gcs(
-    path: str, bucket_name: str, service_account_file: str, folder: str = "raw_data"
-) -> None:
-    """Uploads a CSV file to GCS."""
-    try:
-        if not os.path.isfile(path):
-            raise FileNotFoundError(f"File not found: {path}")
-
-        with open(path, "r", encoding="utf-8") as f:
-            content = f.read()
-
-        filename = os.path.basename(path)
-        blob_name = f"{folder}/{filename}" if folder else filename
-
-        client = storage.Client.from_service_account_json(service_account_file)
-        bucket = client.bucket(bucket_name)
-        blob = bucket.blob(blob_name)
-        blob.upload_from_string(content, content_type="text/csv")
-        # Wait for confirmation that the object exists
-        for _ in range(10):
-            if blob.exists():
-                logger.info(f"Confirmed: CSV uploaded://{bucket_name}/{blob_name}")
-                break
-            time.sleep(1)
-        else:
-            logger.warning(
-                f"Upload done but object not found immediately: gs://{bucket_name}/{blob_name}"
-            )
-
-    except Exception as e:
-        logger.error(f"CSV upload error ({path}): {e}", exc_info=True)
+"""
+Upload to GCS using gcloud auth
+Documentation: https://cloud.google.com/storage/docs/uploading-objects
+"""
 
 
-def upload_json_to_gcs(
-    path: str, bucket_name: str, service_account_file: str, folder: str = "raw_data"
-) -> None:
-    """Uploads a JSON file (converted to NDJSON) to GCS"""
-    try:
-        if not os.path.isfile(path):
-            raise FileNotFoundError(f"File not found: {path}")
+def upload_blob(bucket_name, source_file_name, destination_folder_name):
+    """Uploads a file to the bucket."""
+    # The ID of your GCS bucket
+    # bucket_name = "your-bucket-name"
+    # The path to your file to upload
+    # source_file_name = "local/path/to/file"
+    # The ID of your GCS bucket folder: optional
+    # destination_folder_name = "storage-object-name"
 
-        with open(path, "r", encoding="utf-8") as f:
+    filename = os.path.basename(source_file_name)
+    destination_blob_name = (
+        f"{destination_folder_name}/{filename}" if destination_folder_name else filename
+    )
+
+    storage_client = storage.Client()
+    bucket = storage_client.bucket(bucket_name)
+    blob = bucket.blob(destination_blob_name)
+
+    # If the file is a JSON file, clean it before uploading
+    if filename.lower().endswith(".json"):
+        with open(source_file_name, "r", encoding="utf-8") as f:
             file_content = f.read()
-            # Remove trailing commas before closing brackets
-            cleaned_json_content = re.sub(r",\s*(\]|\})", r"\1", file_content)
-            data = json.loads(cleaned_json_content)
-            # Convert to NDJSON
-            content = "\n".join(json.dumps(item) for item in data)
-
-        filename = os.path.basename(path)
-        blob_name = f"{folder}/{filename}" if folder else filename
-
-        client = storage.Client.from_service_account_json(service_account_file)
-        bucket = client.bucket(bucket_name)
-        blob = bucket.blob(blob_name)
-        blob.upload_from_string(content, content_type="application/json")
-        # Wait for confirmation that the object exists
-        for _ in range(10):
-            if blob.exists():
-                logger.info(f"Confirmed: JSON uploaded://{bucket_name}/{blob_name}")
-                break
-            time.sleep(1)
-        else:
-            logger.warning(
-                f"Upload done but object not found immediately: gs://{bucket_name}/{blob_name}"
-            )
-    except Exception as e:
-        logger.error(f"JSON upload error ({path}): {e}", exc_info=True)
-
-
-def upload_file_to_gcs(
-    path: str, bucket_name: str, service_account_file: str, folder: str = "raw_data"
-) -> None:
-    ext = os.path.splitext(path)[1].lower()
-    if ext == ".csv":
-        upload_csv_to_gcs(path, bucket_name, service_account_file, folder)
-    elif ext == ".json":
-        upload_json_to_gcs(path, bucket_name, service_account_file, folder)
+        cleaned_json_content = re.sub(r",\s*(\]|\})", r"\1", file_content)
+        data_cleaned_json_content = json.loads(cleaned_json_content)
+        # Convert to NDJSON
+        converted_cleaned_json_content = "\n".join(
+            json.dumps(item) for item in data_cleaned_json_content
+        )
+        blob.upload_from_string(
+            converted_cleaned_json_content, content_type="application/json"
+        )
     else:
-        raise ValueError(f"Unsupported file extension: {ext}")
+        blob.upload_from_filename(source_file_name)
+
+    print(f"File {source_file_name} uploaded to {destination_blob_name}.")
