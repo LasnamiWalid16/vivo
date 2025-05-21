@@ -18,7 +18,7 @@ Inside **src/upload_to_gcs**, the logic for uploading files is as follows:
 - **config.py**: Loads environment variables
 - **gcs_utils.py** contains two main functions:  
   - **list_file_paths_in_directory**: Lists all files inside the `data/` folder.  
-  - **upload_blob**: Uploads each file to GCS. [https://cloud.google.com/storage/docs/uploading-objects]:
+  - **upload_blob**: Uploads each file to GCS. [Google Cloud documentation](https://cloud.google.com/storage/docs/uploading-objects):
 - **main.py**: Calls both functions above (list_file_paths_in_directory & upload_blob ) to upload all files located in `data/` folder.
 
 ## Setup
