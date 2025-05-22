@@ -9,12 +9,12 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
+# Google documentation: https://cloud.google.com/bigquery/docs/external-data-cloud-storage
 def create_external_table_from_csv(
     project_id: str,
     dataset_id: str,
     table_id: str,
     gcs_uri: str,
-    service_account_file: str,
     autodetect: bool = True,
     schema: list = None,
 ) -> None:
@@ -23,14 +23,12 @@ def create_external_table_from_csv(
     with either a defined schema or schema autodetect.
     """
     try:
-        client = bigquery.Client.from_service_account_json(
-            service_account_file, project=project_id
-        )
-
+        client = bigquery.Client()
         table_ref = bigquery.TableReference(
             bigquery.DatasetReference(project_id, dataset_id), table_id
         )
 
+        # delete old table
         client.delete_table(table_ref, not_found_ok=True)
         logger.info(f"Old table deleted: {project_id}.{dataset_id}.{table_id}")
 
@@ -63,7 +61,6 @@ def create_external_table_from_json(
     dataset_id: str,
     table_id: str,
     gcs_uri: str,
-    service_account_file: str,
     autodetect: bool = True,
     schema: list = None,
     json_format: str = "NEWLINE_DELIMITED_JSON",
@@ -73,9 +70,7 @@ def create_external_table_from_json(
     with either a defined schema or schema autodetect.
     """
     try:
-        client = bigquery.Client.from_service_account_json(
-            service_account_file, project=project_id
-        )
+        client = bigquery.Client()
 
         table_ref = bigquery.TableReference(
             bigquery.DatasetReference(project_id, dataset_id), table_id

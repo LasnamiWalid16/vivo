@@ -34,8 +34,8 @@ Documentation: https://cloud.google.com/storage/docs/uploading-objects
 """
 
 
-def upload_blob(bucket_name, source_file_name, destination_folder_name):
-    """Uploads a file to the bucket."""
+def upload_blob(bucket_name, source_file_name, destination_folder_name="raw_data"):
+    """Uploads a file to GCS bucket."""
     # The ID of your GCS bucket
     # bucket_name = "your-bucket-name"
     # The path to your file to upload
