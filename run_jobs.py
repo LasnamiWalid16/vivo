@@ -16,7 +16,7 @@ def run_job(job_name: str) -> None:
     project_dir = Path(f"jobs/{job_name}")
     main_script_relative_path = Path(f"src/{job_name}/main.py")
 
-    logger.info(f"Running job: {job_name}")
+    logger.info(f"******************* Running job: {job_name} *******************")
 
     try:
         subprocess.run(

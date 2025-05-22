@@ -36,7 +36,6 @@ Inside **src/traitement_ad_hook**, :
    TABLE_ID=drug_graph
 
 3. Tests: Two test files are defined:
-   - **test_gcs_utils.py** : unit test file test_gcs_utils.py that tests the list_file_paths_in_directory function by creating two dummy files in a temporary directory using Python's tempfile module
    - **test_config**: test the env variables loading
    - Run the tests:
    ```bash
