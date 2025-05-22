@@ -7,7 +7,10 @@ This job Transform the raw data (external tables) to actionable models
 Before running the job, make sure you have:
 
 - BigQuery dataset for dbt transformation
-- A service account key with roles: **storage.objectViewer**, **bigquery.dataEditor** 
+- The Google Cloud SDK (gcloud CLI) installed and initialized.
+- You are authenticated using the following command:
+   ```bash
+   gcloud auth application-default login
 
 ## How it works
 Inside **\src\dbt_vivo\dbt_vivo_project**, the logic for modeling:
@@ -30,27 +33,23 @@ Inside **\src\dbt_vivo\dbt_vivo_project**, the logic for modeling:
    ```bash
    poetry install
 
-2. Add the service account JSON key file to the root directory of the job.
-
-3. Create a .env file in the root of your project and insert your key/value pairs in the following format of KEY=VALUE:
+2. Create a .env file in the root of your project and insert your key/value pairs in the following format of KEY=VALUE:
     ```.env
     PROJECT_ID=gcp-project-id
     DBT_DATASET_PROD=dbt-dataset
-    KEYPATH_PROD=path-to-service-account-json-key
     LOCATION_PROD=dbt-dataset-location
 
-4. Make sure to export the env variables:
+3. Make sure to export the env variables:
     - if you are on windows:
     ```powershell
     $env:PROJECT_ID=gcp-project-id
-    $env:DBT_DATASET_PROD="vivo_dbt_dev" 
-    $env:KEYPATH_PROD=path-to-service-account-json-key
+    $env:DBT_DATASET_PROD=your-dbt-dataset-where-creating-the-models 
     $env:LOCATION_PROD=dbt-dataset-location
     ```
     - if you are on MAC/linux:
     ```bash
     export PROJECT_ID=gcp-project-id
-    export DBT_DATASET_PROD="vivo_dbt_dev" 
+    export DBT_DATASET_PROD=your-dbt-dataset-where-creating-the-models 
     export KEYPATH_PROD=path-to-service-account-json-key
     export LOCATION_PROD=dbt-dataset-location
 
