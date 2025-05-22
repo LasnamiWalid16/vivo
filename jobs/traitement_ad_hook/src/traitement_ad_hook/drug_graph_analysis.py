@@ -3,7 +3,7 @@ from bigquery_utils import (
     get_bigquery_job_query_as_dataframe,
     get_bigquery_job_query_as_json,
 )
-from config import PROJECT_ID, SERVICE_ACCOUNT_FILE
+from config import PROJECT_ID
 
 
 def get_top_journals_by_unique_drugs(
@@ -13,7 +13,7 @@ def get_top_journals_by_unique_drugs(
     query = f"SELECT * FROM `{full_table_id}`"
 
     # Get the drug_graph dataframe
-    df = get_bigquery_job_query_as_dataframe(query, SERVICE_ACCOUNT_FILE)
+    df = get_bigquery_job_query_as_dataframe(query)
 
     # Explod mentions column
     df_exploded = df.explode("mentions")
@@ -53,7 +53,7 @@ def get_drugs_journal_pubmed(
     # Get the json drug_graph from bigquery
     full_table_id = f"{PROJECT_ID}.{dataset_id}.{table_id}"
     query = f"SELECT * FROM `{full_table_id}`"
-    data = get_bigquery_job_query_as_json(query, SERVICE_ACCOUNT_FILE)
+    data = get_bigquery_job_query_as_json(query)
 
     # Get unique journals where the drug is mentioned in pubmed only -> json
     journals = {

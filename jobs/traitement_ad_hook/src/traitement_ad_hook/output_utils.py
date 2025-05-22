@@ -20,10 +20,10 @@ def default_serializer(obj):
 
 
 def save_json_query_to_output_folder(
-    query: str, credentials_path: str, output_folder_name: str, output_file_name: str
+    query: str, output_folder_name: str, output_file_name: str
 ) -> None:
     # Get the query result
-    result_json = get_bigquery_job_query_as_json(query, credentials_path)
+    result_json = get_bigquery_job_query_as_json(query)
 
     # Ensure the output folder exists
     output_path = Path(output_folder_name)

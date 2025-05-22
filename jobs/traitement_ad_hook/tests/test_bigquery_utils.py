@@ -7,7 +7,7 @@ from src.traitement_ad_hook.bigquery_utils import get_bigquery_job_query_as_json
     "google.cloud.bigquery.Client"
 )  # mock the Client class from google.cloud.bigquery
 @patch("google.oauth2.service_account.Credentials")  # mock credentials
-def test_get_bigquery_job_query_as_json(mock_credentials, mock_bigquery_client):
+def test_get_bigquery_job_query_as_json(mock_bigquery_client):
     # Setup mock return value for result
     mock_row_1 = {"drug": "drug1", "code": 123}
     mock_row_2 = {"drug": "drug2", "code": 658}

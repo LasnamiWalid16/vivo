@@ -5,7 +5,10 @@ This job export the drug_graph.json and answer the questions in bonus part
 ## Prerequisites
 
 Before running the job, make sure you have:
-- A service account key with roles: **bigquery.dataViewer**
+- The Google Cloud SDK (gcloud CLI) installed and initialized.
+- You are authenticated using the following command:
+   ```bash
+   gcloud auth application-default login
 
 ## How it works
 Inside **src/traitement_ad_hook**, :
@@ -26,22 +29,19 @@ Inside **src/traitement_ad_hook**, :
    ```bash
    poetry install
 
-2. Add the service account JSON key file to the root directory of the job.
-
-3. Create a .env file in the root of your project and insert your key/value pairs in the following format of KEY=VALUE:
+2. Create a .env file in the root of your project and insert your key/value pairs in the following format of KEY=VALUE:
     ```.bash
    PROJECT_ID=gcp-project-id
    DATASET_ID=dbt-dataset
    TABLE_ID=drug_graph
-   SERVICE_ACCOUNT_FILE=path-to-service-account-json
 
-4. Tests: Two test files are defined:
+3. Tests: Two test files are defined:
    - **test_gcs_utils.py** : unit test file test_gcs_utils.py that tests the list_file_paths_in_directory function by creating two dummy files in a temporary directory using Python's tempfile module
    - **test_config**: test the env variables loading
    - Run the tests:
    ```bash
    poetry run pytest
 
-5. Run the Job
+4. Run the Job
    ```bash
    poetry run python src/traitement_ad_hook/main.py

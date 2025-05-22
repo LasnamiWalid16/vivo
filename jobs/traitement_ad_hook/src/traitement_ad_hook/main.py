@@ -1,4 +1,4 @@
-from config import DBT_DATASET, PROJECT_ID, SERVICE_ACCOUNT_FILE
+from config import DBT_DATASET, PROJECT_ID
 from output_utils import (
     list_to_json,
     save_json_query_to_output_folder,
@@ -15,7 +15,6 @@ if __name__ == "__main__":
     # Export drug_graph.json to output/drug_graph.json ()
     save_json_query_to_output_folder(
         query=query_drug_graph,
-        credentials_path=SERVICE_ACCOUNT_FILE,
         output_folder_name="output",
         output_file_name="drug_graph.json",
     )
