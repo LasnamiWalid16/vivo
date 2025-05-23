@@ -1,16 +1,43 @@
-## 6. "Pour aller plus loin"
+# How to Scale This Data Pipeline for Big Data
 
-### Quels sont les éléments à considérer pour faire évoluer votre code afin qu’il puisse gérer de grosses volumétries de données ?
+If we want this pipeline to handle very large volumes of data (terabytes or millions of files), here are the key points to consider:
 
-- Utilisation de **Spark** pour le traitement distribué.
-- Chargement des fichiers en parallèle vers un **Cloud Storage** pour optimiser les temps d’ingestion.
-- Utilisation d’une architecture **ELT** avec **DBT/Dataform**, permettant de transformer les données directement dans le data warehouse avec l'implementation de **incrematl tables**
-- Mise en place de **tests automatiques** avec DBT pour assurer la fiabilité des données.
-- Partitioning, Indexing, Clustering des données dans BigQuery pour améliorer les performances de requêtes SQL.
+##  1. Data Storage and Ingestion
 
-### Quelles modifications seraient nécessaires pour prendre en compte de telles volumétries ?
+- Use other file formats like **Parquet** or **Avro**.
+- Add partitions (for example, by date) and clustering to organize the data and improve query performance.
+- Process files **in parallel** using tools like **Spark**.
 
-- Intégration d’un orchestrateur comme **Airflow/Cloud Workflows** pour gérer les dépendances et l'exécution en DAG.
-- Parallélisation des tasks, par example le chargement des fichiers depuis GCS en parallèle.
-- Ajout de **systèmes de monitoring et d’alerting**
-- Utilisation de **formats optimisés** pour les gros volumes comme Parquet.
+##  2. Pipeline Structure
+
+- Split the pipeline into **small steps** that can be reused and tested.
+- Use an **orchetrator** like **Airflow** / **Cloud workflows** to run the pipeline step by step.
+- Add **error handling** and **logs** to know what happens if something goes wrong.
+
+## 3. Data Processing
+
+- Use **distributed tools** like **Spark** when data is too big for one machine for example in the traitement_ad_hook job.
+- Process only **new data** instead of everything (DBT **incremental tables**).
+- Use a simple structure with DBT/DATAFORM to manage the data instead of loading big files into Python:
+    - **Bronze**: raw data
+    - **Silver**: cleaned data
+    - **Gold**: final data used for analysis or dashboards (Drug graph)
+
+    Also:
+    - Keep **old versions** (snapshots).
+    - Use a **data catalog** (DBT generate docs) to document models.
+
+## 5. Automation and DevOps
+
+- Use tools like Terraform, Cloud Build, and Artifact Registry to create the necessary services.
+- Add **tests** to check data quality.
+- Use **different environments** (dev, test, prod) to avoid problems in production.
+
+## Conclusion
+
+To handle big data, we should:
+
+- Use optimized file formats (like Parquet or Avro) and process data in parallel
+- Only process new or changed data
+- Automate and test each step
+- Use separate environments for development, testing, and production
