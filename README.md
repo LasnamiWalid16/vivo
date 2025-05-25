@@ -23,6 +23,6 @@ Data pipeline to extract and merge drug mentions from scientific publications an
   python run_jobs.py
 
 ## DBT Lineage Graph:
-![DBT Lineage Graph](images/vivo-dbt-linegae-graph.png)
+![DBT Lineage Graph](images/vivo-dbt-lineage-graph.png)
 ## The drug_graph table created in bigquery:
 ![Drug Graph json](images/vivo-bigquery.png)
