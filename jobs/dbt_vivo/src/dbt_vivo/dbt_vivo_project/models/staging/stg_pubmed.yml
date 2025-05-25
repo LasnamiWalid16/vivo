@@ -9,5 +9,13 @@ models:
         tests:
           - not_null
           - unique
-
-     
+      - name: date
+        description: "publish date."
+        tests:
+          - not_null
+      - name: journal
+        description: "Publication journal"
+        tests:
+          - not_null
+      - name: title
+        description: "Publication title"

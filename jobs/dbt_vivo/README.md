@@ -45,6 +45,8 @@ Inside **\src\dbt_vivo\dbt_vivo_project**, the logic for modeling:
     $env:PROJECT_ID=gcp-project-id
     $env:DBT_DATASET_PROD=your-dbt-dataset-where-creating-the-models 
     $env:LOCATION_PROD=dbt-dataset-location
+    
+
     ```
     - if you are on MAC/linux:
     ```bash

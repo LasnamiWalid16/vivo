@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: stg_clinical_trials
+    description: "Staging table for stg_clinical_trials table."
+    columns:
+      - name: id
+        description: "Unique identifier for the stg_clinical_trials."
+        tests:
+          - not_null
+          - unique
+      - name: date
+        description: "Clinical trial date."
+        tests:
+          - not_null
+      - name: journal
+        description: "Clinical trial journal"
+        tests:
+          - not_null
+      - name: scientific_title
+        description: "Clinical trial scientific_title"

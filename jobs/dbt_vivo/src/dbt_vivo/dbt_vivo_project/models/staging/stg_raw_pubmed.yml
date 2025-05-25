@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: stg_raw_pubmed
+    description: "Staging table for raw pubmed (csv + json) table."
+    columns:
+      - name: id
+        description: "Unique identifier for the pubmed."
+        tests:
+          - not_null
+          - unique
+      - name: date
+        description: "publish date."
+        tests:
+          - not_null
+      - name: journal
+        description: "Publication journal"
+        tests:
+          - not_null
+      - name: title
+        description: "Publication title" 

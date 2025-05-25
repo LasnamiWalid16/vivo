@@ -9,5 +9,8 @@ models:
         tests:
           - not_null
           - unique
-
-     
+      - name: drug
+        description: "Unique name for the drug."
+        tests:
+          - not_null
+          - unique 

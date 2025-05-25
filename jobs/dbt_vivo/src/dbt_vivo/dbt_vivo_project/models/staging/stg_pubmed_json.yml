@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: stg_pubmed_json
+    description: "Staging table for stg_pubmed_json table."
+    columns:
+      - name: id
+        description: "Unique identifier for the stg_pubmed_json."
+        tests:
+          - not_null
+          - unique
+      - name: date
+        description: "publish date."
+        tests:
+          - not_null
+      - name: journal
+        description: "Publication journal"
+        tests:
+          - not_null
+      - name: title
+        description: "Publication title"
